@@ -61,7 +61,7 @@ EOF
 }
 
 edit() {
-  open "${markdownFile}"
+  $EDITOR "${markdownFile}"
 }
 
 loadProperties() {
@@ -99,7 +99,7 @@ version() {
 }
 
 view() {
-  open "${htmlFile}"
+  $EDITOR "${htmlFile}"
 }
 
 #
