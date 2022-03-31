@@ -49,7 +49,7 @@ EOF
   if [[ -n "${OPTIONAL_FILE}" ]]; then
     markdownFile="${NOTED_MARKDOWN_HOME}/${OPTIONAL_FILE}"
   fi
-  touch "${markdownFile}"
+  initFile
   if [ -n "${OPTIONAL_NOTE}" ]; then
     # Supplying a note means automatically add that to the file
     newEntry "${OPTIONAL_NOTE}" >>"${markdownFile}"
@@ -61,8 +61,16 @@ EOF
 }
 
 edit() {
+  initFile
   $EDITOR "${markdownFile}"
 }
+
+initFile() {
+  if [[ ! -f "${markdownFile}" ]]; then
+      echo "# ${currDate}" >> "${markdownFile}"
+  fi
+}
+
 
 loadProperties() {
   if [[ -f "${CONFIG_FILE}" ]]; then
